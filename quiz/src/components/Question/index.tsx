@@ -5,6 +5,7 @@ import './styles.css';
 interface QuestionProps {
     statement: string;
     options: string[];
+    onSelection: Function;
 }
   
 export const Question = (props: QuestionProps) => {
@@ -12,7 +13,12 @@ export const Question = (props: QuestionProps) => {
         <Fragment>
             <h1>{props.statement}</h1>
             {props.options.map((option, index) => (
-                <button key={`button-${index}`}>{option}</button>
+                <button 
+                    key={`button-${index}`} 
+                    onClick={() => props.onSelection(index)}
+                >
+                    {option}
+                </button>
             ))}
         </Fragment>
     );

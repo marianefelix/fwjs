@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { Question } from "../Question";
-import { Result } from "../Result";
+import { Results } from "../Result";
 
 const questions = [
     {
@@ -22,28 +22,52 @@ const questions = [
 ];
 
 export const Quiz = () => {
-    const showResults = true;
+    const [showResults, setShowResults] = useState<boolean>(false);
     const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [answers, setAnswers] = useState<number[]>([]);
     
     const confirm = () => {
-        console.log('Confirmou');
-        setCurrentQuestion((state) => state++);
+        const newCurrentQuestion = currentQuestion + 1;
+
+        if (newCurrentQuestion < questions.length) {
+            setCurrentQuestion(newCurrentQuestion);
+        } else {
+            setShowResults(true);  
+        }
+    };
+
+    const selectOption = (optionIndex: number) => {
+        const answersCopy = [...answers];
+        answersCopy[currentQuestion] = optionIndex;
+
+        setAnswers(answersCopy);
+    };
+
+    const getAnswers = () => {
+        const answersList = answers.map((optionSelectedIndex, index) => 
+            questions[index].options[optionSelectedIndex]
+        );
+
+        return answersList;
     };
 
     return (
-        <Fragment>
+        <div>
             {showResults
                 ? (
+                    <Results answers={getAnswers()} />
+                )
+                : (
                     <Fragment>
                         <Question 
                             statement={questions[currentQuestion].statement}
-                            options={questions[0].options}
+                            options={questions[currentQuestion].options}
+                            onSelection={selectOption}
                         />
                         <button onClick={confirm}>Confirmar resposta</button>
                     </Fragment>
                 )
-                : <Result />
             }
-        </Fragment>
+        </div>
     );
 }
