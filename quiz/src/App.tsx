@@ -1,13 +1,12 @@
 import React from 'react';
 
-import { Quiz } from './components/Quiz';
-
 import './App.css';
+import { CustomButton } from './components/Tab';
 
 function App() {
   return (
     <div className="App">
-      <Quiz />
+      <CustomButton title="Tab 1" onClick={() => {}} />
     </div>
   );
 }
