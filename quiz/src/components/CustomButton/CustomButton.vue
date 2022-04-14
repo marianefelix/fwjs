@@ -4,6 +4,7 @@
     interface CustomButtonProps {
         title: string;
         selected: boolean;
+        onClick: () => void;
     }
 
     defineProps<CustomButtonProps>()
@@ -11,8 +12,10 @@
 
 <template>
     <button
+        type="button"
         :class="{selected: selected}"
-        type="button" 
+        :title="$props.title"
+        @click="$props.onClick"
     >
         {{ title }}
     </button>
