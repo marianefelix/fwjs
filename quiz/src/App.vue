@@ -1,15 +1,14 @@
 <script setup lang="ts">
+  import CustomButton from "./components/CustomButton/CustomButton.vue";
 </script>
 
 <template>
-  <h1>Olá mundo!</h1>
+  <CustomButton 
+    title="Tab 1" 
+    v-bind:selected="false" 
+  />
 </template>
 
 <style>
-@import './assets/base.css';
-
-#app {
-  text-align: center;
-}
-
+  @import './assets/base.css';
 </style>
