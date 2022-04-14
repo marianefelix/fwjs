@@ -2,10 +2,17 @@
     interface CustomButtonProps {
         title: string;
         selected: boolean;
-        onClick: () => void;
+        index: number;
     }
 
-    defineProps<CustomButtonProps>()
+    interface CustomButtonEvents {
+        onClick: (index: number) => void;
+    }
+
+    defineProps<CustomButtonProps>();
+    defineEmits<CustomButtonEvents>();
+
+    
 </script>
 
 <template>
@@ -13,7 +20,7 @@
         type="button"
         :class="{selected: selected}"
         :title="$props.title"
-        @click="$props.onClick"
+        @click="$emit('onClick', index)"
     >
         {{ title }}
     </button>

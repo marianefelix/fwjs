@@ -1,15 +1,8 @@
 <script setup lang="ts">
-  import CustomButton from "./components/CustomButton/CustomButton.vue";
-import Enunciation from "./components/Enunciation/Enunciation.vue";
-</script>
+import Tab from "./components/Tab/Tab.vue";</script>
 
 <template>
-  <CustomButton 
-    title="Tab 1" 
-    :selected="false"
-    :onClick="() => {}"
-  />
-  <Enunciation text="Texto 1" />
+  <Tab />
 </template>
 
 <style>
