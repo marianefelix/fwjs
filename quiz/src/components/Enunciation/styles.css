@@ -1,0 +1,15 @@
+.description-container {
+    min-width: 78%;
+    height: 5.5rem;
+    padding: 1.5rem;
+    
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    border: 1px solid #aaaaaa;
+}
+
+.enunciation-text {
+    margin: 0;
+
+    font-weight: 400;
+}

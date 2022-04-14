@@ -1,5 +1,3 @@
-<style scoped src="./styles.css"></style>
-
 <script setup lang="ts">
     interface CustomButtonProps {
         title: string;
@@ -20,3 +18,5 @@
         {{ title }}
     </button>
 </template>
+
+<style scoped src="./styles.css"></style>
