@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { CustomButtomComponent } from './components/CustomButton/custom-button.component';
-import { DescriptionContainerComponent } from './components/DescriptionContainer/description-container.component';
 import { EnunciationComponent } from './components/Enunciation/enunciation.component';
+import { TabComponent } from './components/Tab/tab.component';
 
 
 @NgModule({
@@ -12,7 +12,7 @@ import { EnunciationComponent } from './components/Enunciation/enunciation.compo
     AppComponent,
     CustomButtomComponent,
     EnunciationComponent,
-    DescriptionContainerComponent
+    TabComponent
   ],
   imports: [
     BrowserModule

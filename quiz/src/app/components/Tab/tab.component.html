@@ -1,0 +1,15 @@
+<div class="tab-container">
+  <app-custom-button *ngFor="let tabItem of tabList; let newIndex = index"
+    [title]="tabItem.title"
+    [selected]="isTabSelected(newIndex)"
+    [index]="newIndex"
+    (onClick)="tabOnClick(newIndex)"
+  >
+  </app-custom-button>
+
+  <div class="description-container">
+    <app-enunciation>
+      {{ tabList[currentlySelectedTab].description }}
+    </app-enunciation>
+  </div>
+</div>
