@@ -1,0 +1,8 @@
+<button
+    type="button"
+    [class]="selected ? 'selected' : ''"
+    [title]="title"
+    (click)="onClick.emit(index)"
+>
+    {{ title }}
+</button>

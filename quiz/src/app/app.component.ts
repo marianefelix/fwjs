@@ -2,7 +2,14 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: '<h1>Olá mundo!</h1>',
+  template: `
+    <app-custom-button 
+      title="Tab 1"
+      [selected]="true"
+      [index]="1"
+    >
+    </app-custom-button>
+    `,
   styles: [`
     h1 {
       text-align: center;
