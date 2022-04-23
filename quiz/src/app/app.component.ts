@@ -9,6 +9,9 @@ import { Component } from '@angular/core';
       [index]="1"
     >
     </app-custom-button>
+    <app-description-container>
+      <app-enunciation>Texto 1</app-enunciation>
+    </app-description-container>
     `,
   styles: [`
     h1 {
