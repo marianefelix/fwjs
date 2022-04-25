@@ -1,6 +1,6 @@
 .description-container {
     min-width: 78%;
-    height: 5.5rem;
+    min-height: 5.5rem;
     padding: 1.5rem;
     
     background-color: #f0f0f0;

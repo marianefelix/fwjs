@@ -1,6 +1,8 @@
-import React, { Fragment, useState } from "react";
+import { Fragment, useState } from "react";
 import { Question } from "../Question";
 import { Results } from "../Result";
+
+import "./styles.css";
 
 const questions = [
     {
@@ -53,6 +55,7 @@ export const Quiz = () => {
 
     return (
         <div>
+            <h1>Quiz</h1>
             {showResults
                 ? (
                     <Results answers={getAnswers()} />
@@ -62,6 +65,7 @@ export const Quiz = () => {
                         <Question 
                             statement={questions[currentQuestion].statement}
                             options={questions[currentQuestion].options}
+                            index={currentQuestion}
                             onSelection={selectOption}
                         />
                         <button onClick={confirm}>Confirmar resposta</button>
