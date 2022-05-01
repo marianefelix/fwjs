@@ -1,8 +1,13 @@
 <script lang="ts">
+	import CustomButton from "./components/CustomButton/CustomButton.svelte";
 </script>
 
 <main>
-	<h1>Olá mundo!</h1>
+	<CustomButton 
+		title="Tab 1" 
+		selected={false} 
+		index={0} 
+	/>
 </main>
 
 <style>
