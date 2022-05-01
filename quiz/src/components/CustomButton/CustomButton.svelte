@@ -8,7 +8,7 @@
     const dispatcher = createEventDispatcher();
 
     export const onClick = (index: number) => {
-        dispatcher('onClick', index);
+        dispatcher('selection', index);
     };
     
 </script>
@@ -17,7 +17,7 @@
     type="button"
     class={selected ? 'selected' : ''}
     title={title}
-    on:click={() => onClick(index)}
+    on:click={e => onClick(index)}
 >
     { title }
 </button>
