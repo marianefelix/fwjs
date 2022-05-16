@@ -1,9 +1,8 @@
+import { ButtonHTMLAttributes } from 'react';
 import './styles.css';
 
-interface TabProps {
-    title: string;
-    selected: boolean; 
-    onClick: () => void;
+interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    selected?: boolean; 
 }
 
 export const CustomButton = (props: TabProps) => {
@@ -19,8 +18,7 @@ export const CustomButton = (props: TabProps) => {
         <button
             className={`custom-button${getState()}`}
             type="button" 
-            title={props.title} 
-            onClick={props.onClick}
+            {...props}
         >
             {props.title}
         </button>

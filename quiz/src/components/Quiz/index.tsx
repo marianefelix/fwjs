@@ -1,4 +1,5 @@
 import { Fragment, useState } from "react";
+import { CustomButton } from "../CustomButton";
 import { Question } from "../Question";
 import { Results } from "../Result";
 
@@ -26,6 +27,7 @@ const questions = [
 export const Quiz = () => {
     const [showResults, setShowResults] = useState<boolean>(false);
     const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [currentlySelectedOption, setCurrentlySelectedOption] = useState<undefined | number>();
     const [answers, setAnswers] = useState<number[]>([]);
     
     const confirm = () => {
@@ -36,6 +38,8 @@ export const Quiz = () => {
         } else {
             setShowResults(true);  
         }
+
+        setCurrentlySelectedOption(undefined);
     };
 
     const selectOption = (optionIndex: number) => {
@@ -43,6 +47,7 @@ export const Quiz = () => {
         answersCopy[currentQuestion] = optionIndex;
 
         setAnswers(answersCopy);
+        setCurrentlySelectedOption(optionIndex);
     };
 
     const getAnswers = () => {
@@ -54,21 +59,27 @@ export const Quiz = () => {
     };
 
     return (
-        <div>
-            <h1>Quiz</h1>
+        <div className="quiz">
             {showResults
                 ? (
                     <Results answers={getAnswers()} />
                 )
                 : (
                     <Fragment>
+                        <h1>Quiz</h1>
+
                         <Question 
                             statement={questions[currentQuestion].statement}
                             options={questions[currentQuestion].options}
                             index={currentQuestion}
+                            optionSelected={currentlySelectedOption}
                             onSelection={selectOption}
                         />
-                        <button onClick={confirm}>Confirmar resposta</button>
+                        <CustomButton 
+                            title="Confirmar resposta" 
+                            onClick={confirm} 
+                            disabled={currentlySelectedOption === undefined} 
+                        />
                     </Fragment>
                 )
             }

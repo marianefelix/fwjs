@@ -1,6 +1,6 @@
 .custom-button {
-    width: 7rem;
-    padding: 0.5rem 0;
+    min-width: 7rem;
+    padding: 0.5rem 0.2rem;
 
     background-color: #cccccc;
     border: 1px solid #777777;

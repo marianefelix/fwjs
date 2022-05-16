@@ -1,3 +1,13 @@
+.quiz {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.quiz > button {
+    width: fit-content;
+}
+
 h1 {
     font-weight: normal;
 }

@@ -8,6 +8,7 @@ interface QuestionProps {
     statement: string;
     options: string[];
     index: number;
+    optionSelected: number | undefined;
     onSelection: Function;
 }
   
@@ -16,14 +17,16 @@ export const Question = (props: QuestionProps) => {
         <DescriptionContainer>
             <p>Questão {props.index + 1} de {props.options.length}</p>
             <Enunciation text={props.statement} />
-            {props.options.map((option, index) => (
-                <CustomButton
-                    key={`button-${index}`}
-                    title={option}
-                    selected
-                    onClick={() => props.onSelection(index)}
-                />
-            ))}
+            <div className="button-container">
+                {props.options.map((option, index) => (
+                    <CustomButton
+                        key={`button-${index}`}
+                        title={option}
+                        selected={props.optionSelected === index}
+                        onClick={() => props.onSelection(index)}
+                    />
+                ))}
+            </div>
         </DescriptionContainer>
     );
 };
