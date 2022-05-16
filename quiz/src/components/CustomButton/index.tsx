@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes } from 'react';
 import './styles.css';
 
 interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    selected?: boolean; 
+    selected?: boolean;
 }
 
 export const CustomButton = (props: TabProps) => {
