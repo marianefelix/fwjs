@@ -20,14 +20,14 @@ export default {
 
 const Template: Story = (args) => <CustomButton {...args} />;
 
-export const Primary = Template.bind({});
+export const CustomButtonComponent = Template.bind({});
 
-Primary.args = {
+CustomButtonComponent.args = {
   selected: false,
   title: 'Botão',
 };
 
-Primary.parameters = {
+CustomButtonComponent.parameters = {
   docs: {
     source: {
       code: '<CustomButton title="Botão" />',
