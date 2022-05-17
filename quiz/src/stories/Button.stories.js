@@ -28,3 +28,18 @@ CustomButtonComponent.args = {
   title: 'Botão',
   index: 1
 };
+
+CustomButtonComponent.parameters = {
+  docs: {
+    source: {
+      code: `
+<CustomButton 
+  :selected="false" 
+  title="Botão" 
+  :index="1" 
+  @on-click="onClickFunction" 
+/>
+      `,
+    },
+  },
+}

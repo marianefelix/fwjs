@@ -23,3 +23,11 @@ export const EnunciationComponent = Template.bind({});
 EnunciationComponent.args = {
   text: 'Enunciado',
 };
+
+EnunciationComponent.parameters = {
+  docs: {
+    source: {
+      code: '<Enunciation text="Enunciado" />',
+    },
+  },
+}

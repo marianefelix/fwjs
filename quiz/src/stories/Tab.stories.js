@@ -39,3 +39,11 @@ export const TabComponent = Template.bind({});
 TabComponent.args = {
   data,
 };
+
+TabComponent.parameters = {
+  docs: {
+    source: {
+      code: '<Tab :data="data" />',
+    },
+  },
+};
