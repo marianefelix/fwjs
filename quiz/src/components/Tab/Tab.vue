@@ -4,26 +4,16 @@
     import CustomButton from "../CustomButton/CustomButton.vue";
     import Enunciation from "../Enunciation/Enunciation.vue";
 
-    // states
-    const tabList = [
-        {
-            "title": "Tab 1",
-            "description": "Texto 1",
-        },
-        {
-            "title": "Tab 2",
-            "description": "Texto 2",
-        },
-        {
-            "title": "Tab 3",
-            "description": "Texto 3",
-        },
-        {
-            "title": "Tab 4",
-            "description": "Texto 4",
-        },
-    ];
+    interface TabProps {
+        data: {
+            title: string;
+            description: string;
+        }[];
+    }
 
+    defineProps<TabProps>();
+
+    // states
     const currentlySelectedTab = ref(0);
     
     // functions
@@ -44,7 +34,7 @@
 <template>
     <div class="tab-container">
         <CustomButton
-            v-for="(tabItem, index) in tabList" 
+            v-for="(tabItem, index) in data" 
             :key="tabItem.title"
             :title="tabItem.title"
             :selected="isTabSelected(index)"
@@ -53,7 +43,7 @@
         />
 
         <Enunciation 
-            :text="tabList[currentlySelectedTab].description" 
+            :text="data[currentlySelectedTab].description" 
         />
     </div>
 </template>
