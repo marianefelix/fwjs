@@ -5,26 +5,14 @@ import { Enunciation } from "../Enunciation";
 
 import './styles.css';
 
-const tabList = [
-    {
-        "title": "Tab 1",
-        "description": "Texto 1",
-    },
-    {
-        "title": "Tab 2",
-        "description": "Texto 2",
-    },
-    {
-        "title": "Tab 3",
-        "description": "Texto 3",
-    },
-    {
-        "title": "Tab 4",
-        "description": "Texto 4",
-    },
-];
+interface TabProps {
+    data: {
+        title: string;
+        description: string;
+    }[];
+}
 
-export const Tab = () => {
+export const Tab = ({ data }: TabProps) => {
     const [currentlySelectedTab, setCurrentlySelectedTab] = useState(0);
     
     const tabOnClick = (tabIndex: number) => {
@@ -41,7 +29,7 @@ export const Tab = () => {
 
     return (
         <div className="tab-container">
-            {tabList.map((tab, index) => (
+            {data.map((tab, index) => (
                 <CustomButton 
                     key={tab.description} 
                     title={tab.title}
@@ -51,7 +39,7 @@ export const Tab = () => {
             ))}
 
             <DescriptionContainer>
-                <Enunciation text={tabList[currentlySelectedTab].description} />
+                <Enunciation text={data[currentlySelectedTab].description} />
             </DescriptionContainer>
         </div>
     );
