@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 
-export interface CustomButtom {
-    title: string;
-    selected: boolean;
-    index: number;
+export interface CustomButton {
+  title: string;
+  selected: boolean;
+  index: number;
 }
 
 @Component({
@@ -12,10 +12,10 @@ export interface CustomButtom {
   styleUrls: ['./custom-button.component.css'] 
 })
 
-export class CustomButtomComponent {
-   @Input() title!: string;
-   @Input() selected!: boolean;
-   @Input() index!: number;
+export class CustomButtonComponent {
+  @Input() title!: string;
+  @Input() selected!: boolean;
+  @Input() index!: number;
 
-   @Output() onClick = new EventEmitter<number>();
+  @Output() onClick = new EventEmitter<number>();
 }

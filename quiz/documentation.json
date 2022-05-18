@@ -2,13 +2,13 @@
     "pipes": [],
     "interfaces": [
         {
-            "name": "CustomButtom",
-            "id": "interface-CustomButtom-57b8822ecac2e8ab13444fe4245b2244dfa78dbbfe8d5cfd675d427838aaad9ad2475b1ef45aeeed1b87a9192d508449bdd8d3a52f46dbe3d95e7c61cba8d725",
+            "name": "CustomButton",
+            "id": "interface-CustomButton-4bd5f65babe294db5f7aeb1b89fb5e877c6ae367efb313fcb03bb6178d6730fd1b4f1e77c728b712a9cce8bf39a249b96d6ef825e49900ecdfaa0753bfbfc720",
             "file": "src/app/components/CustomButton/custom-button.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Component, EventEmitter, Input, Output } from \"@angular/core\";\r\n\r\nexport interface CustomButtom {\r\n    title: string;\r\n    selected: boolean;\r\n    index: number;\r\n}\r\n\r\n@Component({\r\n  selector: 'app-custom-button',\r\n  templateUrl: './custom-button.component.html',\r\n  styleUrls: ['./custom-button.component.css'] \r\n})\r\n\r\nexport class CustomButtomComponent {\r\n   @Input() title!: string;\r\n   @Input() selected!: boolean;\r\n   @Input() index!: number;\r\n\r\n   @Output() onClick = new EventEmitter<number>();\r\n}",
+            "sourceCode": "import { Component, EventEmitter, Input, Output } from \"@angular/core\";\r\n\r\nexport interface CustomButton {\r\n  title: string;\r\n  selected: boolean;\r\n  index: number;\r\n}\r\n\r\n@Component({\r\n  selector: 'app-custom-button',\r\n  templateUrl: './custom-button.component.html',\r\n  styleUrls: ['./custom-button.component.css'] \r\n})\r\n\r\nexport class CustomButtonComponent {\r\n  @Input() title!: string;\r\n  @Input() selected!: boolean;\r\n  @Input() index!: number;\r\n\r\n  @Output() onClick = new EventEmitter<number>();\r\n}",
             "properties": [
                 {
                     "name": "index",
@@ -44,12 +44,12 @@
         },
         {
             "name": "TabListType",
-            "id": "interface-TabListType-e7d4b2251f19d32b5a149df4afb5dfe9c9f5b158a5341877e82e8bfe9c2f72a207b8a445131b2956b3741491d0eb55368f77ffdb5c89e9e50c939eb59f995715",
+            "id": "interface-TabListType-8552dfd982ef13aa711806e312338e667ac01c3b6771edac1aedd15216429d6d7593c909d7bf42b2c15510934f600f8a29f49b44a9058cf5e52d4e344fe013e6",
             "file": "src/app/components/Tab/tab.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Component } from \"@angular/core\";\r\n\r\ninterface TabListType {\r\n    title: string;\r\n    description: string;\r\n}\r\n\r\n@Component({\r\n  selector: 'app-tab',\r\n  templateUrl: './tab.component.html',\r\n  styleUrls: ['./tab.component.css'] \r\n})\r\n\r\nexport class TabComponent {\r\n    tabList: TabListType[]  = [\r\n        {\r\n            \"title\": \"Tab 1\",\r\n            \"description\": \"Texto 1\",\r\n        },\r\n        {\r\n            \"title\": \"Tab 2\",\r\n            \"description\": \"Texto 2\",\r\n        },\r\n        {\r\n            \"title\": \"Tab 3\",\r\n            \"description\": \"Texto 3\",\r\n        },\r\n        {\r\n            \"title\": \"Tab 4\",\r\n            \"description\": \"Texto 4\",\r\n        },\r\n    ];\r\n    \r\n    currentlySelectedTab = 0;\r\n    \r\n\r\n    tabOnClick = (tabIndex: number) => {\r\n        this.currentlySelectedTab = tabIndex;\r\n    };\r\n\r\n    isTabSelected = (tabIndex: number) => {\r\n        if (tabIndex === this.currentlySelectedTab) {\r\n            return true;\r\n        }\r\n\r\n        return false;\r\n    };\r\n}",
+            "sourceCode": "import { Component, Input } from \"@angular/core\";\r\n\r\nexport interface TabListType {\r\n    title: string;\r\n    description: string;\r\n}\r\n\r\nexport interface TabProps {\r\n    data: TabListType[];\r\n}\r\n\r\n@Component({\r\n  selector: 'app-tab',\r\n  templateUrl: './tab.component.html',\r\n  styleUrls: ['./tab.component.css'] \r\n})\r\n\r\nexport class TabComponent {\r\n  @Input() data!: TabListType[];\r\n    \r\n    currentlySelectedTab = 0;\r\n    \r\n\r\n    tabOnClick = (tabIndex: number) => {\r\n        this.currentlySelectedTab = tabIndex;\r\n    };\r\n\r\n    isTabSelected = (tabIndex: number) => {\r\n        if (tabIndex === this.currentlySelectedTab) {\r\n            return true;\r\n        }\r\n\r\n        return false;\r\n    };\r\n}",
             "properties": [
                 {
                     "name": "description",
@@ -75,15 +75,26 @@
             "methods": []
         },
         {
-            "name": "User",
-            "id": "interface-User-9c7e5f1bbbab702cb032307d130876cb68969b0cd4eedef32a0c8cad8081a54e5f8f577ed6ad4539c1b99a1d246cb34031d198c2ea8eba440e64e91b14f01fdc",
-            "file": "src/stories/User.ts",
+            "name": "TabProps",
+            "id": "interface-TabProps-8552dfd982ef13aa711806e312338e667ac01c3b6771edac1aedd15216429d6d7593c909d7bf42b2c15510934f600f8a29f49b44a9058cf5e52d4e344fe013e6",
+            "file": "src/app/components/Tab/tab.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "export interface User {}\n",
-            "properties": [],
+            "sourceCode": "import { Component, Input } from \"@angular/core\";\r\n\r\nexport interface TabListType {\r\n    title: string;\r\n    description: string;\r\n}\r\n\r\nexport interface TabProps {\r\n    data: TabListType[];\r\n}\r\n\r\n@Component({\r\n  selector: 'app-tab',\r\n  templateUrl: './tab.component.html',\r\n  styleUrls: ['./tab.component.css'] \r\n})\r\n\r\nexport class TabComponent {\r\n  @Input() data!: TabListType[];\r\n    \r\n    currentlySelectedTab = 0;\r\n    \r\n\r\n    tabOnClick = (tabIndex: number) => {\r\n        this.currentlySelectedTab = tabIndex;\r\n    };\r\n\r\n    isTabSelected = (tabIndex: number) => {\r\n        if (tabIndex === this.currentlySelectedTab) {\r\n            return true;\r\n        }\r\n\r\n        return false;\r\n    };\r\n}",
+            "properties": [
+                {
+                    "name": "data",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "TabListType[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                }
+            ],
             "indexSignatures": [],
+            "kind": 165,
             "methods": []
         }
     ],
@@ -95,7 +106,7 @@
     "components": [
         {
             "name": "AppComponent",
-            "id": "component-AppComponent-c6a26f9d1df8a0fd06243702216e3f84252188eb647be1ec4611e08a2092610ba243bc97aadc6c399dcf987212303410a69e773178c7026feff2be5a85b89570",
+            "id": "component-AppComponent-1aed31ac8ddb8bcddba25baea8a376fa1b92beab417c4472a8a6ad7e92a259ce8a245a575448b82761f36c7f2c8edd8396678e460955459b7c364b45f75e0c22",
             "file": "src/app/app.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -105,12 +116,22 @@
             "selector": "app-root",
             "styleUrls": [],
             "styles": [],
-            "template": "<app-tab></app-tab>\n",
+            "template": "<app-tab [data]=\"tabList\"></app-tab>\n",
             "templateUrl": [],
             "viewProviders": [],
             "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [
+                {
+                    "name": "tabList",
+                    "defaultValue": "[\r\n        {\r\n            \"title\": \"Tab 1\",\r\n            \"description\": \"Texto 1\",\r\n        },\r\n        {\r\n            \"title\": \"Tab 2\",\r\n            \"description\": \"Texto 2\",\r\n        },\r\n        {\r\n            \"title\": \"Tab 3\",\r\n            \"description\": \"Texto 3\",\r\n        },\r\n        {\r\n            \"title\": \"Tab 4\",\r\n            \"description\": \"Texto 4\",\r\n        },\r\n    ]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "TabListType[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 14
+                },
                 {
                     "name": "title",
                     "defaultValue": "'quiz'",
@@ -119,7 +140,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 11
+                    "line": 12
                 }
             ],
             "methodsClass": [],
@@ -130,138 +151,14 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-root',\r\n  template: `\r\n    <app-tab></app-tab>\r\n    `,\r\n})\r\n\r\nexport class AppComponent {\r\n  title = 'quiz';\r\n}\r\n",
+            "sourceCode": "import { Component } from '@angular/core';\r\nimport { TabListType } from './components/Tab/tab.component';\r\n\r\n@Component({\r\n  selector: 'app-root',\r\n  template: `\r\n    <app-tab [data]=\"tabList\"></app-tab>\r\n    `,\r\n})\r\n\r\nexport class AppComponent {\r\n  title = 'quiz';\r\n\r\n    tabList: TabListType[]  = [\r\n        {\r\n            \"title\": \"Tab 1\",\r\n            \"description\": \"Texto 1\",\r\n        },\r\n        {\r\n            \"title\": \"Tab 2\",\r\n            \"description\": \"Texto 2\",\r\n        },\r\n        {\r\n            \"title\": \"Tab 3\",\r\n            \"description\": \"Texto 3\",\r\n        },\r\n        {\r\n            \"title\": \"Tab 4\",\r\n            \"description\": \"Texto 4\",\r\n        },\r\n    ];\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": ""
         },
         {
-            "name": "ButtonComponent",
-            "id": "component-ButtonComponent-4ef205c97a334c309aa4001c8ab4a6d9571dcae18d0e85aaf0d367467ab5d3a9f13ab3573726f1fcb409bc9b49894dadfb80b1bbe1b6ba7041455ad9d4922004",
-            "file": "src/stories/button.component.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "storybook-button",
-            "styleUrls": [
-                "./button.css"
-            ],
-            "styles": [],
-            "template": "<button   type=\"button\"\n   (click)=\"onClick.emit($event)\"\n   [ngClass]=\"classes\"\n   [ngStyle]=\"{ 'background-color': backgroundColor }\"\n >\n   {{ label }}\n </button>",
-            "templateUrl": [],
-            "viewProviders": [],
-            "inputsClass": [
-                {
-                    "name": "backgroundColor",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\n\nWhat background color to use\n",
-                    "description": "<p>What background color to use</p>\n",
-                    "line": 26,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "label",
-                    "defaultValue": "'Button'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "pos": 711,
-                            "end": 724,
-                            "flags": 4227072,
-                            "modifierFlagsCache": 0,
-                            "transformFlags": 0,
-                            "kind": 325,
-                            "tagName": {
-                                "pos": 712,
-                                "end": 720,
-                                "flags": 4227072,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
-                                "kind": 79,
-                                "escapedText": "required"
-                            },
-                            "comment": ""
-                        }
-                    ],
-                    "rawdescription": "\n\nButton contents\n\n",
-                    "description": "<p>Button contents</p>\n",
-                    "line": 40,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "primary",
-                    "defaultValue": "false",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\n\nIs this the principal call to action on the page?\n",
-                    "description": "<p>Is this the principal call to action on the page?</p>\n",
-                    "line": 20,
-                    "type": "boolean",
-                    "decorators": []
-                },
-                {
-                    "name": "size",
-                    "defaultValue": "'medium'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\n\nHow large should the button be?\n",
-                    "description": "<p>How large should the button be?</p>\n",
-                    "line": 32,
-                    "type": "\"small\" | \"medium\" | \"large\"",
-                    "decorators": []
-                }
-            ],
-            "outputsClass": [
-                {
-                    "name": "onClick",
-                    "defaultValue": "new EventEmitter<Event>()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\n\nOptional click handler\n",
-                    "description": "<p>Optional click handler</p>\n",
-                    "line": 46,
-                    "type": "EventEmitter"
-                }
-            ],
-            "propertiesClass": [],
-            "methodsClass": [],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  template: ` <button\n    type=\"button\"\n    (click)=\"onClick.emit($event)\"\n    [ngClass]=\"classes\"\n    [ngStyle]=\"{ 'background-color': backgroundColor }\"\n  >\n    {{ label }}\n  </button>`,\n  styleUrls: ['./button.css'],\n})\nexport default class ButtonComponent {\n  /**\n   * Is this the principal call to action on the page?\n   */\n  @Input()\n  primary = false;\n\n  /**\n   * What background color to use\n   */\n  @Input()\n  backgroundColor?: string;\n\n  /**\n   * How large should the button be?\n   */\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary';\n\n    return ['storybook-button', `storybook-button--${this.size}`, mode];\n  }\n}\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": ".storybook-button {\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  font-weight: 700;\n  border: 0;\n  border-radius: 3em;\n  cursor: pointer;\n  display: inline-block;\n  line-height: 1;\n}\n.storybook-button--primary {\n  color: white;\n  background-color: #1ea7fd;\n}\n.storybook-button--secondary {\n  color: #333;\n  background-color: transparent;\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;\n}\n.storybook-button--small {\n  font-size: 12px;\n  padding: 10px 16px;\n}\n.storybook-button--medium {\n  font-size: 14px;\n  padding: 11px 20px;\n}\n.storybook-button--large {\n  font-size: 16px;\n  padding: 12px 24px;\n}\n",
-                    "styleUrl": "./button.css"
-                }
-            ],
-            "stylesData": "",
-            "accessors": {
-                "classes": {
-                    "name": "classes",
-                    "getSignature": {
-                        "name": "classes",
-                        "type": "[]",
-                        "returnType": "string[]",
-                        "line": 48
-                    }
-                }
-            }
-        },
-        {
-            "name": "CustomButtomComponent",
-            "id": "component-CustomButtomComponent-57b8822ecac2e8ab13444fe4245b2244dfa78dbbfe8d5cfd675d427838aaad9ad2475b1ef45aeeed1b87a9192d508449bdd8d3a52f46dbe3d95e7c61cba8d725",
+            "name": "CustomButtonComponent",
+            "id": "component-CustomButtonComponent-4bd5f65babe294db5f7aeb1b89fb5e877c6ae367efb313fcb03bb6178d6730fd1b4f1e77c728b712a9cce8bf39a249b96d6ef825e49900ecdfaa0753bfbfc720",
             "file": "src/app/components/CustomButton/custom-button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -322,7 +219,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, Output } from \"@angular/core\";\r\n\r\nexport interface CustomButtom {\r\n    title: string;\r\n    selected: boolean;\r\n    index: number;\r\n}\r\n\r\n@Component({\r\n  selector: 'app-custom-button',\r\n  templateUrl: './custom-button.component.html',\r\n  styleUrls: ['./custom-button.component.css'] \r\n})\r\n\r\nexport class CustomButtomComponent {\r\n   @Input() title!: string;\r\n   @Input() selected!: boolean;\r\n   @Input() index!: number;\r\n\r\n   @Output() onClick = new EventEmitter<number>();\r\n}",
+            "sourceCode": "import { Component, EventEmitter, Input, Output } from \"@angular/core\";\r\n\r\nexport interface CustomButton {\r\n  title: string;\r\n  selected: boolean;\r\n  index: number;\r\n}\r\n\r\n@Component({\r\n  selector: 'app-custom-button',\r\n  templateUrl: './custom-button.component.html',\r\n  styleUrls: ['./custom-button.component.css'] \r\n})\r\n\r\nexport class CustomButtonComponent {\r\n  @Input() title!: string;\r\n  @Input() selected!: boolean;\r\n  @Input() index!: number;\r\n\r\n  @Output() onClick = new EventEmitter<number>();\r\n}",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -335,7 +232,7 @@
         },
         {
             "name": "EnunciationComponent",
-            "id": "component-EnunciationComponent-77a52721efe5599880e0e4b8227fc695f38007379a72a4655c4b79003ae9ad3747fcb55041053a13d84a21b5b208ea575cda1b2e3f168768e3e782d3bb0eb5b2",
+            "id": "component-EnunciationComponent-015b4efea64a86009fb0b1850f3374244952c8c5610826a00ad28d978b1728de2daef0976d15fd2fe4de55f07a290fce59613ae21e66120db1ffb84261475c33",
             "file": "src/app/components/Enunciation/enunciation.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -347,7 +244,7 @@
                 "./enunciation.component.css"
             ],
             "styles": [],
-            "template": "<h2 class=\"enunciation-text\">\n  <ng-content></ng-content>\n</h2>\n",
+            "template": "<div class=\"description-container\">\n  <h2 class=\"enunciation-text\">\n    <ng-content></ng-content>\n  </h2>\n</div>\n",
             "templateUrl": [],
             "viewProviders": [],
             "inputsClass": [],
@@ -361,172 +258,19 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input } from \"@angular/core\";\r\n\r\n@Component({\r\n  selector: 'app-enunciation',\r\n  template: `\r\n    <h2 class=\"enunciation-text\">\r\n      <ng-content></ng-content>\r\n    </h2>\r\n  `,\r\n  styleUrls: ['./enunciation.component.css'] \r\n})\r\n\r\nexport class EnunciationComponent {}",
+            "sourceCode": "import { Component, Input } from \"@angular/core\";\r\n\r\n@Component({\r\n  selector: 'app-enunciation',\r\n  template: `\r\n  <div class=\"description-container\">\r\n    <h2 class=\"enunciation-text\">\r\n      <ng-content></ng-content>\r\n    </h2>\r\n  </div>\r\n  `,\r\n  styleUrls: ['./enunciation.component.css'] \r\n})\r\n\r\nexport class EnunciationComponent {}",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".enunciation-text {\r\n    margin: 0;\r\n\r\n    font-weight: 400;\r\n}",
+                    "data": ":host {\r\n    min-width: 78%;\r\n    height: 5.5rem;\r\n    padding: 1.5rem;\r\n    \r\n    background-color: #f0f0f0;\r\n    border-radius: 10px;\r\n    border: 1px solid #aaaaaa;\r\n\r\n    grid-column: 1 / -1;\r\n}\r\n\r\n.enunciation-text {\r\n    margin: 0;\r\n\r\n    font-weight: 400;\r\n}",
                     "styleUrl": "./enunciation.component.css"
                 }
             ],
             "stylesData": ""
         },
         {
-            "name": "HeaderComponent",
-            "id": "component-HeaderComponent-a557eec14f72c438a8033301f4d6ce023e0a1844a3b06ec2b38794a612acc31735ae78a5ee10071b230c8c20d699eb914554e69d07ade54adb371da8efb464cc",
-            "file": "src/stories/header.component.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "storybook-header",
-            "styleUrls": [
-                "./header.css"
-            ],
-            "styles": [],
-            "template": "<header>    <div class=\"wrapper\">\n      <div>\n        <svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n              fill=\"#FFF\"\n            />\n            <path\n              d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n              fill=\"#555AB9\"\n            />\n            <path\n              d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\"\n              fill=\"#91BAF8\"\n            />\n          </g>\n        </svg>\n        <h1>Acme</h1>\n      </div>\n      <div>\n        <div *ngIf=\"user\">\n          <span class=\"welcome\">\n            Welcome, <b>{{ user.name }}</b\n            >!\n          </span>\n          <storybook-button\n            *ngIf=\"user\"\n            size=\"small\"\n            (onClick)=\"onLogout.emit($event)\"\n            label=\"Log out\"\n          ></storybook-button>\n        </div>\n        <div *ngIf=\"!user\">\n          <storybook-button\n            *ngIf=\"!user\"\n            size=\"small\"\n            class=\"margin-left\"\n            (onClick)=\"onLogin.emit($event)\"\n            label=\"Log in\"\n          ></storybook-button>\n          <storybook-button\n            *ngIf=\"!user\"\n            primary\n            size=\"small\"\n            primary=\"true\"\n            class=\"margin-left\"\n            (onClick)=\"onCreateAccount.emit($event)\"\n            label=\"Sign up\"\n          ></storybook-button>\n        </div>\n      </div>\n    </div>\n  </header>",
-            "templateUrl": [],
-            "viewProviders": [],
-            "inputsClass": [
-                {
-                    "name": "user",
-                    "defaultValue": "null",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 65,
-                    "type": "User | null",
-                    "decorators": []
-                }
-            ],
-            "outputsClass": [
-                {
-                    "name": "onCreateAccount",
-                    "defaultValue": "new EventEmitter<Event>()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 74,
-                    "type": "EventEmitter"
-                },
-                {
-                    "name": "onLogin",
-                    "defaultValue": "new EventEmitter<Event>()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 68,
-                    "type": "EventEmitter"
-                },
-                {
-                    "name": "onLogout",
-                    "defaultValue": "new EventEmitter<Event>()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 71,
-                    "type": "EventEmitter"
-                }
-            ],
-            "propertiesClass": [],
-            "methodsClass": [],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\nimport { User } from './User';\n\n@Component({\n  selector: 'storybook-header',\n  template: `<header>\n    <div class=\"wrapper\">\n      <div>\n        <svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n              fill=\"#FFF\"\n            />\n            <path\n              d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n              fill=\"#555AB9\"\n            />\n            <path\n              d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\"\n              fill=\"#91BAF8\"\n            />\n          </g>\n        </svg>\n        <h1>Acme</h1>\n      </div>\n      <div>\n        <div *ngIf=\"user\">\n          <span class=\"welcome\">\n            Welcome, <b>{{ user.name }}</b\n            >!\n          </span>\n          <storybook-button\n            *ngIf=\"user\"\n            size=\"small\"\n            (onClick)=\"onLogout.emit($event)\"\n            label=\"Log out\"\n          ></storybook-button>\n        </div>\n        <div *ngIf=\"!user\">\n          <storybook-button\n            *ngIf=\"!user\"\n            size=\"small\"\n            class=\"margin-left\"\n            (onClick)=\"onLogin.emit($event)\"\n            label=\"Log in\"\n          ></storybook-button>\n          <storybook-button\n            *ngIf=\"!user\"\n            primary\n            size=\"small\"\n            primary=\"true\"\n            class=\"margin-left\"\n            (onClick)=\"onCreateAccount.emit($event)\"\n            label=\"Sign up\"\n          ></storybook-button>\n        </div>\n      </div>\n    </div>\n  </header>`,\n  styleUrls: ['./header.css'],\n})\nexport default class HeaderComponent {\n  @Input()\n  user: User | null = null;\n\n  @Output()\n  onLogin = new EventEmitter<Event>();\n\n  @Output()\n  onLogout = new EventEmitter<Event>();\n\n  @Output()\n  onCreateAccount = new EventEmitter<Event>();\n}\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": ".wrapper {\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n  padding: 15px 20px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\nsvg {\n  display: inline-block;\n  vertical-align: top;\n}\n\nh1 {\n  font-weight: 900;\n  font-size: 20px;\n  line-height: 1;\n  margin: 6px 0 6px 10px;\n  display: inline-block;\n  vertical-align: top;\n}\n\nbutton + button {\n  margin-left: 10px;\n}\n\n.welcome {\n  color: #333;\n  font-size: 14px;\n  margin-right: 10px;\n}\n",
-                    "styleUrl": "./header.css"
-                }
-            ],
-            "stylesData": ""
-        },
-        {
-            "name": "PageComponent",
-            "id": "component-PageComponent-7126d8c2607c946741c651482413b43feb72b2d63cac9d3ac173fde206a5e635eb4cdbf7ca7ac9327c7d4d05cf7ef619144c34c11609ad677081d0ee4e855064",
-            "file": "src/stories/page.component.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "storybook-page",
-            "styleUrls": [
-                "./page.css"
-            ],
-            "styles": [],
-            "template": "<article>    <storybook-header\n      [user]=\"user\"\n      (onLogout)=\"doLogout()\"\n      (onLogin)=\"doLogin()\"\n      (onCreateAccount)=\"doCreateAccount()\"\n    ></storybook-header>\n    <section>\n      <h2>Pages in Storybook</h2>\n      <p>\n        We recommend building UIs with a\n        <a href=\"https://componentdriven.org\" target=\"_blank\" rel=\"noopener noreferrer\">\n          <strong>component-driven</strong>\n        </a>\n        process starting with atomic components and ending with pages.\n      </p>\n      <p>\n        Render pages with mock data. This makes it easy to build and review page states without\n        needing to navigate to them in your app. Here are some handy patterns for managing page data\n        in Storybook:\n      </p>\n      <ul>\n        <li>\n          Use a higher-level connected component. Storybook helps you compose such data from the\n          \"args\" of child component stories\n        </li>\n        <li>\n          Assemble data in the page component from your services. You can mock these services out\n          using Storybook.\n        </li>\n      </ul>\n      <p>\n        Get a guided tutorial on component-driven development at\n        <a href=\"https://storybook.js.org/tutorials/\" target=\"_blank\" rel=\"noopener noreferrer\">\n          Storybook tutorials\n        </a>\n        . Read more in the\n        <a href=\"https://storybook.js.org/docs\" target=\"_blank\" rel=\"noopener noreferrer\"> docs </a>\n        .\n      </p>\n      <div class=\"tip-wrapper\">\n        <span class=\"tip\">Tip</span> Adjust the width of the canvas with the\n        <svg width=\"10\" height=\"10\" viewBox=\"0 0 12 12\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z\"\n              id=\"a\"\n              fill=\"#999\"\n            />\n          </g>\n        </svg>\n        Viewports addon in the toolbar\n      </div>\n    </section>\n  </article>",
-            "templateUrl": [],
-            "viewProviders": [],
-            "inputsClass": [],
-            "outputsClass": [],
-            "propertiesClass": [
-                {
-                    "name": "user",
-                    "defaultValue": "null",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "User | null",
-                    "optional": false,
-                    "description": "",
-                    "line": 64
-                }
-            ],
-            "methodsClass": [
-                {
-                    "name": "doCreateAccount",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 74,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "doLogin",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 70,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "doLogout",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 66,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                }
-            ],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\nimport { User } from './User';\n\n@Component({\n  selector: 'storybook-page',\n  template: `<article>\n    <storybook-header\n      [user]=\"user\"\n      (onLogout)=\"doLogout()\"\n      (onLogin)=\"doLogin()\"\n      (onCreateAccount)=\"doCreateAccount()\"\n    ></storybook-header>\n    <section>\n      <h2>Pages in Storybook</h2>\n      <p>\n        We recommend building UIs with a\n        <a href=\"https://componentdriven.org\" target=\"_blank\" rel=\"noopener noreferrer\">\n          <strong>component-driven</strong>\n        </a>\n        process starting with atomic components and ending with pages.\n      </p>\n      <p>\n        Render pages with mock data. This makes it easy to build and review page states without\n        needing to navigate to them in your app. Here are some handy patterns for managing page data\n        in Storybook:\n      </p>\n      <ul>\n        <li>\n          Use a higher-level connected component. Storybook helps you compose such data from the\n          \"args\" of child component stories\n        </li>\n        <li>\n          Assemble data in the page component from your services. You can mock these services out\n          using Storybook.\n        </li>\n      </ul>\n      <p>\n        Get a guided tutorial on component-driven development at\n        <a href=\"https://storybook.js.org/tutorials/\" target=\"_blank\" rel=\"noopener noreferrer\">\n          Storybook tutorials\n        </a>\n        . Read more in the\n        <a href=\"https://storybook.js.org/docs\" target=\"_blank\" rel=\"noopener noreferrer\"> docs </a>\n        .\n      </p>\n      <div class=\"tip-wrapper\">\n        <span class=\"tip\">Tip</span> Adjust the width of the canvas with the\n        <svg width=\"10\" height=\"10\" viewBox=\"0 0 12 12\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z\"\n              id=\"a\"\n              fill=\"#999\"\n            />\n          </g>\n        </svg>\n        Viewports addon in the toolbar\n      </div>\n    </section>\n  </article>`,\n  styleUrls: ['./page.css'],\n})\nexport default class PageComponent {\n  user: User | null = null;\n\n  doLogout() {\n    this.user = null;\n  }\n\n  doLogin() {\n    this.user = { name: 'Jane Doe' };\n  }\n\n  doCreateAccount() {\n    this.user = { name: 'Jane Doe' };\n  }\n}\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": "section {\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  font-size: 14px;\n  line-height: 24px;\n  padding: 48px 20px;\n  margin: 0 auto;\n  max-width: 600px;\n  color: #333;\n}\n\nsection h2 {\n  font-weight: 900;\n  font-size: 32px;\n  line-height: 1;\n  margin: 0 0 4px;\n  display: inline-block;\n  vertical-align: top;\n}\n\nsection p {\n  margin: 1em 0;\n}\n\nsection a {\n  text-decoration: none;\n  color: #1ea7fd;\n}\n\nsection ul {\n  padding-left: 30px;\n  margin: 1em 0;\n}\n\nsection li {\n  margin-bottom: 8px;\n}\n\nsection .tip {\n  display: inline-block;\n  border-radius: 1em;\n  font-size: 11px;\n  line-height: 12px;\n  font-weight: 700;\n  background: #e7fdd8;\n  color: #66bf3c;\n  padding: 4px 12px;\n  margin-right: 10px;\n  vertical-align: top;\n}\n\nsection .tip-wrapper {\n  font-size: 13px;\n  line-height: 20px;\n  margin-top: 40px;\n  margin-bottom: 40px;\n}\n\nsection .tip-wrapper svg {\n  display: inline-block;\n  height: 12px;\n  width: 12px;\n  margin-right: 4px;\n  vertical-align: top;\n  margin-top: 3px;\n}\n\nsection .tip-wrapper svg path {\n  fill: #1ea7fd;\n}\n",
-                    "styleUrl": "./page.css"
-                }
-            ],
-            "stylesData": ""
-        },
-        {
             "name": "TabComponent",
-            "id": "component-TabComponent-e7d4b2251f19d32b5a149df4afb5dfe9c9f5b158a5341877e82e8bfe9c2f72a207b8a445131b2956b3741491d0eb55368f77ffdb5c89e9e50c939eb59f995715",
+            "id": "component-TabComponent-8552dfd982ef13aa711806e312338e667ac01c3b6771edac1aedd15216429d6d7593c909d7bf42b2c15510934f600f8a29f49b44a9058cf5e52d4e344fe013e6",
             "file": "src/app/components/Tab/tab.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -542,7 +286,16 @@
                 "./tab.component.html"
             ],
             "viewProviders": [],
-            "inputsClass": [],
+            "inputsClass": [
+                {
+                    "name": "data",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 19,
+                    "type": "TabListType[]",
+                    "decorators": []
+                }
+            ],
             "outputsClass": [],
             "propertiesClass": [
                 {
@@ -553,7 +306,7 @@
                     "type": "number",
                     "optional": false,
                     "description": "",
-                    "line": 34
+                    "line": 21
                 },
                 {
                     "name": "isTabSelected",
@@ -563,17 +316,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 41
-                },
-                {
-                    "name": "tabList",
-                    "defaultValue": "[\r\n        {\r\n            \"title\": \"Tab 1\",\r\n            \"description\": \"Texto 1\",\r\n        },\r\n        {\r\n            \"title\": \"Tab 2\",\r\n            \"description\": \"Texto 2\",\r\n        },\r\n        {\r\n            \"title\": \"Tab 3\",\r\n            \"description\": \"Texto 3\",\r\n        },\r\n        {\r\n            \"title\": \"Tab 4\",\r\n            \"description\": \"Texto 4\",\r\n        },\r\n    ]",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "TabListType[]",
-                    "optional": false,
-                    "description": "",
-                    "line": 15
+                    "line": 28
                 },
                 {
                     "name": "tabOnClick",
@@ -583,7 +326,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 37
+                    "line": 24
                 }
             ],
             "methodsClass": [],
@@ -594,28 +337,28 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from \"@angular/core\";\r\n\r\ninterface TabListType {\r\n    title: string;\r\n    description: string;\r\n}\r\n\r\n@Component({\r\n  selector: 'app-tab',\r\n  templateUrl: './tab.component.html',\r\n  styleUrls: ['./tab.component.css'] \r\n})\r\n\r\nexport class TabComponent {\r\n    tabList: TabListType[]  = [\r\n        {\r\n            \"title\": \"Tab 1\",\r\n            \"description\": \"Texto 1\",\r\n        },\r\n        {\r\n            \"title\": \"Tab 2\",\r\n            \"description\": \"Texto 2\",\r\n        },\r\n        {\r\n            \"title\": \"Tab 3\",\r\n            \"description\": \"Texto 3\",\r\n        },\r\n        {\r\n            \"title\": \"Tab 4\",\r\n            \"description\": \"Texto 4\",\r\n        },\r\n    ];\r\n    \r\n    currentlySelectedTab = 0;\r\n    \r\n\r\n    tabOnClick = (tabIndex: number) => {\r\n        this.currentlySelectedTab = tabIndex;\r\n    };\r\n\r\n    isTabSelected = (tabIndex: number) => {\r\n        if (tabIndex === this.currentlySelectedTab) {\r\n            return true;\r\n        }\r\n\r\n        return false;\r\n    };\r\n}",
+            "sourceCode": "import { Component, Input } from \"@angular/core\";\r\n\r\nexport interface TabListType {\r\n    title: string;\r\n    description: string;\r\n}\r\n\r\nexport interface TabProps {\r\n    data: TabListType[];\r\n}\r\n\r\n@Component({\r\n  selector: 'app-tab',\r\n  templateUrl: './tab.component.html',\r\n  styleUrls: ['./tab.component.css'] \r\n})\r\n\r\nexport class TabComponent {\r\n  @Input() data!: TabListType[];\r\n    \r\n    currentlySelectedTab = 0;\r\n    \r\n\r\n    tabOnClick = (tabIndex: number) => {\r\n        this.currentlySelectedTab = tabIndex;\r\n    };\r\n\r\n    isTabSelected = (tabIndex: number) => {\r\n        if (tabIndex === this.currentlySelectedTab) {\r\n            return true;\r\n        }\r\n\r\n        return false;\r\n    };\r\n}",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".tab-container {\r\n    display: grid;\r\n    grid-template-columns: repeat(4, 1fr);\r\n    gap: 1rem;\r\n}\r\n\r\n.tab-container div:last-child {\r\n    grid-column: 1 / -1;\r\n}\r\n\r\n.description-container {\r\n    min-width: 78%;\r\n    height: 5.5rem;\r\n    padding: 1.5rem;\r\n    \r\n    background-color: #f0f0f0;\r\n    border-radius: 10px;\r\n    border: 1px solid #aaaaaa;\r\n}",
+                    "data": ".tab-container {\r\n    display: grid;\r\n    grid-template-columns: repeat(4, 1fr);\r\n    gap: 1rem;\r\n}\r\n\r\n.tab-container div:last-child {\r\n    grid-column: 1 / -1;\r\n}",
                     "styleUrl": "./tab.component.css"
                 }
             ],
             "stylesData": "",
-            "templateData": "<div class=\"tab-container\">\r\n  <app-custom-button *ngFor=\"let tabItem of tabList; let newIndex = index\"\r\n    [title]=\"tabItem.title\"\r\n    [selected]=\"isTabSelected(newIndex)\"\r\n    [index]=\"newIndex\"\r\n    (onClick)=\"tabOnClick(newIndex)\"\r\n  >\r\n  </app-custom-button>\r\n\r\n  <div class=\"description-container\">\r\n    <app-enunciation>\r\n      {{ tabList[currentlySelectedTab].description }}\r\n    </app-enunciation>\r\n  </div>\r\n</div>"
+            "templateData": "<div class=\"tab-container\">\r\n  <app-custom-button *ngFor=\"let tabItem of data; let newIndex = index\"\r\n    [title]=\"tabItem.title\"\r\n    [selected]=\"isTabSelected(newIndex)\"\r\n    [index]=\"newIndex\"\r\n    (onClick)=\"tabOnClick(newIndex)\"\r\n  >\r\n  </app-custom-button>\r\n    <app-enunciation>\r\n      {{ data[currentlySelectedTab].description }}\r\n    </app-enunciation>\r\n</div>"
         }
     ],
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-e106ce708a0fd8bfc5ba2c3a77a442e1f43486e1afda866b1b641399809aab6464be64519dd705370800a35d7df4d09cc8e170bf66fbe9a65e06047122b87cf4",
+            "id": "module-AppModule-664b3f9b9bbf21170bd999589b8fc010228a51e67363fa796a880c862323ab4aa7d89933f20227e1c416154f31b9a43f13432c4bf8532398c24298abbf11e55a",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\n\r\nimport { AppComponent } from './app.component';\r\nimport { CustomButtomComponent } from './components/CustomButton/custom-button.component';\r\nimport { EnunciationComponent } from './components/Enunciation/enunciation.component';\r\nimport { TabComponent } from './components/Tab/tab.component';\r\n\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    CustomButtomComponent,\r\n    EnunciationComponent,\r\n    TabComponent\r\n  ],\r\n  imports: [\r\n    BrowserModule\r\n  ],\r\n  providers: [],\r\n  bootstrap: [AppComponent]\r\n})\r\n\r\nexport class AppModule { }",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\n\r\nimport { AppComponent } from './app.component';\r\nimport { CustomButtonComponent } from './components/CustomButton/custom-button.component';\r\nimport { EnunciationComponent } from './components/Enunciation/enunciation.component';\r\nimport { TabComponent } from './components/Tab/tab.component';\r\n\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    CustomButtonComponent,\r\n    EnunciationComponent,\r\n    TabComponent\r\n  ],\r\n  imports: [\r\n    BrowserModule\r\n  ],\r\n  providers: [],\r\n  bootstrap: [AppComponent]\r\n})\r\n\r\nexport class AppModule { }",
             "children": [
                 {
                     "type": "providers",
@@ -628,13 +371,7 @@
                             "name": "AppComponent"
                         },
                         {
-                            "name": "CustomButtomComponent"
-                        },
-                        {
-                            "name": "EnunciationComponent"
-                        },
-                        {
-                            "name": "TabComponent"
+                            "name": "CustomButtonComponent"
                         }
                     ]
                 },
@@ -664,6 +401,16 @@
     "miscellaneous": {
         "variables": [
             {
+                "name": "ButtonComponent",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/CustomButton.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "(args) => ({\r\n    props: args,\r\n})"
+            },
+            {
                 "name": "context",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -674,14 +421,14 @@
                 "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
             },
             {
-                "name": "environment",
+                "name": "EnunciationComponent",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/environments/environment.prod.ts",
+                "file": "src/stories/Enunciation.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "object",
-                "defaultValue": "{\r\n  production: true\r\n}"
+                "type": "Story",
+                "defaultValue": "() => ({\r\n    template: `\r\n    <app-enunciation>\r\n        Enunciado\r\n    </app-enunciation>`\r\n})"
             },
             {
                 "name": "environment",
@@ -694,64 +441,14 @@
                 "defaultValue": "{\r\n  production: false\r\n}"
             },
             {
-                "name": "Large",
+                "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Button.stories.ts",
+                "file": "src/environments/environment.prod.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "LoggedIn",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/Header.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "LoggedIn",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/Page.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "LoggedOut",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/Header.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "LoggedOut",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/Page.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Primary",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/Button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
+                "type": "object",
+                "defaultValue": "{\r\n  production: true\r\n}"
             },
             {
                 "name": "require",
@@ -763,60 +460,42 @@
                 "type": "literal type"
             },
             {
-                "name": "Secondary",
+                "name": "TabComponent",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Button.stories.ts",
+                "file": "src/stories/Tab.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
+                "type": "Story",
+                "defaultValue": "(args) => ({\r\n    props: args,\r\n})"
             },
             {
-                "name": "Small",
+                "name": "tabList",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Button.stories.ts",
+                "file": "src/stories/Tab.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/Header.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<Header>",
-                "defaultValue": "(args: Header) => ({\n  props: args,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/Button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<Button>",
-                "defaultValue": "(args: Button) => ({\n  props: args,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/Page.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<Page>",
-                "defaultValue": "(args: Page) => ({\n  props: args,\n})"
+                "type": "[]",
+                "defaultValue": "[\r\n    {\r\n        \"title\": \"Tab 1\",\r\n        \"description\": \"Texto 1\",\r\n    },\r\n    {\r\n        \"title\": \"Tab 2\",\r\n        \"description\": \"Texto 2\",\r\n    },\r\n    {\r\n        \"title\": \"Tab 3\",\r\n        \"description\": \"Texto 3\",\r\n    },\r\n    {\r\n        \"title\": \"Tab 4\",\r\n        \"description\": \"Texto 4\",\r\n    },\r\n]"
             }
         ],
         "functions": [],
         "typealiases": [],
         "enumerations": [],
         "groupedVariables": {
+            "src/stories/CustomButton.stories.ts": [
+                {
+                    "name": "ButtonComponent",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/CustomButton.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "(args) => ({\r\n    props: args,\r\n})"
+                }
+            ],
             "src/test.ts": [
                 {
                     "name": "context",
@@ -838,16 +517,16 @@
                     "type": "literal type"
                 }
             ],
-            "src/environments/environment.prod.ts": [
+            "src/stories/Enunciation.stories.ts": [
                 {
-                    "name": "environment",
+                    "name": "EnunciationComponent",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/environments/environment.prod.ts",
+                    "file": "src/stories/Enunciation.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "object",
-                    "defaultValue": "{\r\n  production: true\r\n}"
+                    "type": "Story",
+                    "defaultValue": "() => ({\r\n    template: `\r\n    <app-enunciation>\r\n        Enunciado\r\n    </app-enunciation>`\r\n})"
                 }
             ],
             "src/environments/environment.ts": [
@@ -862,120 +541,38 @@
                     "defaultValue": "{\r\n  production: false\r\n}"
                 }
             ],
-            "src/stories/Button.stories.ts": [
+            "src/environments/environment.prod.ts": [
                 {
-                    "name": "Large",
+                    "name": "environment",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/Button.stories.ts",
+                    "file": "src/environments/environment.prod.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Primary",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Secondary",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Small",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<Button>",
-                    "defaultValue": "(args: Button) => ({\n  props: args,\n})"
+                    "type": "object",
+                    "defaultValue": "{\r\n  production: true\r\n}"
                 }
             ],
-            "src/stories/Header.stories.ts": [
+            "src/stories/Tab.stories.ts": [
                 {
-                    "name": "LoggedIn",
+                    "name": "TabComponent",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/Header.stories.ts",
+                    "file": "src/stories/Tab.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
+                    "type": "Story",
+                    "defaultValue": "(args) => ({\r\n    props: args,\r\n})"
                 },
                 {
-                    "name": "LoggedOut",
+                    "name": "tabList",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/Header.stories.ts",
+                    "file": "src/stories/Tab.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Header.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<Header>",
-                    "defaultValue": "(args: Header) => ({\n  props: args,\n})"
-                }
-            ],
-            "src/stories/Page.stories.ts": [
-                {
-                    "name": "LoggedIn",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Page.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "LoggedOut",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Page.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Page.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<Page>",
-                    "defaultValue": "(args: Page) => ({\n  props: args,\n})"
+                    "type": "[]",
+                    "defaultValue": "[\r\n    {\r\n        \"title\": \"Tab 1\",\r\n        \"description\": \"Texto 1\",\r\n    },\r\n    {\r\n        \"title\": \"Tab 2\",\r\n        \"description\": \"Texto 2\",\r\n    },\r\n    {\r\n        \"title\": \"Tab 3\",\r\n        \"description\": \"Texto 3\",\r\n    },\r\n    {\r\n        \"title\": \"Tab 4\",\r\n        \"description\": \"Texto 4\",\r\n    },\r\n]"
                 }
             ]
         },
@@ -985,7 +582,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 3,
+        "count": 0,
         "status": "low",
         "files": [
             {
@@ -994,14 +591,14 @@
                 "linktype": "component",
                 "name": "AppComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/2",
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
                 "filePath": "src/app/components/CustomButton/custom-button.component.ts",
                 "type": "component",
                 "linktype": "component",
-                "name": "CustomButtomComponent",
+                "name": "CustomButtonComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/5",
                 "status": "low"
@@ -1010,7 +607,7 @@
                 "filePath": "src/app/components/CustomButton/custom-button.component.ts",
                 "type": "interface",
                 "linktype": "interface",
-                "name": "CustomButtom",
+                "name": "CustomButton",
                 "coveragePercent": 0,
                 "coverageCount": "0/4",
                 "status": "low"
@@ -1043,6 +640,15 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/components/Tab/tab.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "TabProps",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
                 "filePath": "src/environments/environment.prod.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -1063,149 +669,43 @@
                 "status": "low"
             },
             {
-                "filePath": "src/stories/Button.stories.ts",
+                "filePath": "src/stories/CustomButton.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Large",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/Button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Primary",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/Button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Secondary",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/Button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Small",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/Button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/Header.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "LoggedIn",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/Header.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "LoggedOut",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/Header.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/Page.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "LoggedIn",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/Page.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "LoggedOut",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/Page.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/User.ts",
-                "type": "interface",
-                "linktype": "interface",
-                "name": "User",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/button.component.ts",
-                "type": "component",
-                "linktype": "component",
                 "name": "ButtonComponent",
-                "coveragePercent": 83,
-                "coverageCount": "5/6",
-                "status": "very-good"
-            },
-            {
-                "filePath": "src/stories/header.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "HeaderComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/5",
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
-                "filePath": "src/stories/page.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "PageComponent",
+                "filePath": "src/stories/Enunciation.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "EnunciationComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/5",
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Tab.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "TabComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Tab.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "tabList",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {

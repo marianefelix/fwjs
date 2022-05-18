@@ -1,8 +1,12 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
-interface TabListType {
+export interface TabListType {
     title: string;
     description: string;
+}
+
+export interface TabProps {
+    data: TabListType[];
 }
 
 @Component({
@@ -12,24 +16,7 @@ interface TabListType {
 })
 
 export class TabComponent {
-    tabList: TabListType[]  = [
-        {
-            "title": "Tab 1",
-            "description": "Texto 1",
-        },
-        {
-            "title": "Tab 2",
-            "description": "Texto 2",
-        },
-        {
-            "title": "Tab 3",
-            "description": "Texto 3",
-        },
-        {
-            "title": "Tab 4",
-            "description": "Texto 4",
-        },
-    ];
+  @Input() data!: TabListType[];
     
     currentlySelectedTab = 0;
     
