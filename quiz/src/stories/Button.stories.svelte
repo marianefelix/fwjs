@@ -1,6 +1,7 @@
 <script>
   import { Meta, Template, Story } from "@storybook/addon-svelte-csf";
   import CustomButton from "../components/CustomButton/CustomButton.svelte";
+  import { action } from '@storybook/addon-actions';
 </script>
 
 <Meta
@@ -10,7 +11,7 @@
     selected: { control: "boolean" },
     title: { control: "text"},
     index: { control: "number" },
-    onClick: {},
+    onClick: { action: action('clicked') },
   }}
 />
 
@@ -24,7 +25,6 @@
     selected: false, 
     title: "Boão", 
     index: 1, 
-    onClick: {} 
   }}
   source='
   <CustomButton 
