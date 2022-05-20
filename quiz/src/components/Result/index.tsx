@@ -4,6 +4,7 @@ import './styles.css';
 
 interface ResultsProps {
     answers: string[];
+    resetOnClick: () => void;
 }
 
   
@@ -14,6 +15,7 @@ export const Results = (props: ResultsProps) => {
             {props.answers.map((answer, index) => (
                 <p key={`answer-${index}`}>{answer}</p>
             ))}
+            <button onClick={props.resetOnClick}>Reiniciar</button>
         </div>
     );
 };

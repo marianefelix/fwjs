@@ -42,6 +42,12 @@ export const Quiz = () => {
         setCurrentlySelectedOption(undefined);
     };
 
+    const resetOnClick = () => {
+        setCurrentlySelectedOption(undefined);
+        setCurrentQuestion(0);
+        setShowResults(false);
+    }
+
     const selectOption = (optionIndex: number) => {
         const answersCopy = [...answers];
         answersCopy[currentQuestion] = optionIndex;
@@ -62,7 +68,7 @@ export const Quiz = () => {
         <div className="quiz">
             {showResults
                 ? (
-                    <Results answers={getAnswers()} />
+                    <Results resetOnClick={resetOnClick} answers={getAnswers()} />
                 )
                 : (
                     <Fragment>
