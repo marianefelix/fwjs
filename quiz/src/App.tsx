@@ -1,10 +1,10 @@
 import './App.css';
-import { Quiz } from './components/Quiz';
+import { TabForm } from './components/TabForm';
 
 function App() {
   return (
     <div className="App">
-      <Quiz />
+      <TabForm />
     </div>
   );
 }
