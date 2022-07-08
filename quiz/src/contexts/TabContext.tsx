@@ -5,7 +5,7 @@ interface TabContextProviderProps {
   children: ReactNode;
 }
 
-interface TabItemType {
+export interface TabItemType {
   title: string;
   content: string;
 }

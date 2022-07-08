@@ -1,8 +1,16 @@
+import { useState } from "react";
+import { TabItemType } from "../../../contexts/TabContext";
 import { Input } from "../../Input";
 import { TextArea } from "../../TextArea";
 import { Divider, Form, FormGroup, Label, SaveButton, Container, Title } from "./styles";
 
+interface TabFormType {
+    tabsNumber: number;
+    tabList: TabItemType[]
+}
+
 export const TabForm = () => {
+    const [form, setForm] = useState<TabFormType | null>(null);
     return (
         <Container>
             <Title>
