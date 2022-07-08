@@ -1,9 +1,0 @@
-.tab-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-}
-
-.tab-container div:last-child {
-    grid-column: 1 / -1;
-}

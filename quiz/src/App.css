@@ -3,7 +3,16 @@
 
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
+  gap: 2rem;
+
+  padding: 35px;
+  padding-bottom: 0;
 
   font-family: 'Inter', sans-serif;
+}
+
+button {
+  border: none;
+  cursor: pointer;
 }

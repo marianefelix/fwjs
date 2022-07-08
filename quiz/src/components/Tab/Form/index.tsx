@@ -1,10 +1,10 @@
-import { Input } from "../Input";
-import { TextArea } from "../TextArea";
-import { Divider, Form, FormGroup, Label, SaveButton, TabContainer, Title } from "./styles";
+import { Input } from "../../Input";
+import { TextArea } from "../../TextArea";
+import { Divider, Form, FormGroup, Label, SaveButton, Container, Title } from "./styles";
 
 export const TabForm = () => {
     return (
-        <TabContainer>
+        <Container>
             <Title>
                 Tabs
             </Title>
@@ -26,6 +26,6 @@ export const TabForm = () => {
                     Salvar
                 </SaveButton>
             </Form>
-        </TabContainer>
+        </Container>
     );
 };
