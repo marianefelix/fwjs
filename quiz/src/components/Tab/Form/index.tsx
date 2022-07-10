@@ -90,20 +90,24 @@ export const TabForm = () => {
 
     const clearState = () => {
         setTabsNumber(1);
-        setTabListForm(tabListFormDefaultValue);
+        setTabListForm([
+            {
+                title: '',
+                content: '',
+            }
+        ]);
     };
 
-    const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        saveTabList(tabListForm);
-    };
+        const response = saveTabList(tabListForm);
+        console.log(response);
 
-    useEffect(() => {
-        if (errors.length === 0) {
+        if (response === 'success') {
             clearState();
         }
-    }, [errors.length]);
+    };
 
     return (
         <Container>

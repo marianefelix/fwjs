@@ -13,13 +13,15 @@ export interface TabItemType {
 interface TabContextType {
   tabList: TabItemType[];
   errors: TabItemType[];
-  saveTabList: (newTabList: TabItemType[]) => void;
+  saveTabList: (newTabList: TabItemType[]) => 'success' | 'error';
   setErrors: (newErrors: TabItemType[]) => void;
 }
 
 export const TabContext = createContext({} as TabContextType);
 
-export const TabContextProvider = ({children}: TabContextProviderProps) => {
+export const TabContextProvider = ({
+  children
+}: TabContextProviderProps) => {
   const [tabList, setTabList] = useState<TabItemType[]>([]);
   const [errors, setErrors] = useState<TabItemType[]>([]);
 
@@ -57,8 +59,11 @@ export const TabContextProvider = ({children}: TabContextProviderProps) => {
 
   const saveTabList = (newTabList: TabItemType[]) => {
     if (isTabListValid(newTabList)) {
-      setTabList(newTabList);
+      setTabList([...tabList, ...newTabList]);
+      return 'success';
     }
+
+    return 'error';
   };
 
   return (
