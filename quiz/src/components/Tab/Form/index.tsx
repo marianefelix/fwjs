@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect, useState } from "react";
+import { Fragment, useContext, useState } from "react";
 import { TabContext, TabItemType } from "../../../contexts/TabContext";
 import { Input } from "../../Input";
 import { TextArea } from "../../TextArea";
@@ -102,7 +102,6 @@ export const TabForm = () => {
         event.preventDefault();
 
         const response = saveTabList(tabListForm);
-        console.log(response);
 
         if (response === 'success') {
             clearState();
