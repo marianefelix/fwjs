@@ -1,6 +1,15 @@
 import { TextareaHTMLAttributes } from 'react';
-import { StyledTextArea } from './styles';
+import { Container, Small, StyledTextArea } from './styles';
 
-export const TextArea = ({ ...props }: TextareaHTMLAttributes<HTMLTextAreaElement>) => {
-  return <StyledTextArea {...props} />;
+interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  errorMessage?: string;
+}
+
+export const TextArea = ({ errorMessage, ...props }: TextAreaProps) => {
+  return (
+    <Container>
+      <StyledTextArea {...props} />
+      {errorMessage && <Small>{errorMessage}</Small>}
+    </Container>
+  );
 };

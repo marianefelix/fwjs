@@ -1,13 +1,16 @@
 import './App.css';
 import { TabView } from './components/Tab/View';
 import { TabForm } from './components/Tab/Form';
+import { TabContextProvider } from './contexts/TabContext';
 
 function App() {
   return (
-    <div className="App">
-      <TabForm />
-      <TabView />
-    </div>
+    <TabContextProvider>
+      <div className="App">
+        <TabForm />
+        <TabView />
+      </div>
+    </TabContextProvider>
   );
 }
 

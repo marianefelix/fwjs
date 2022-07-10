@@ -1,6 +1,15 @@
 import { InputHTMLAttributes } from 'react';
-import { StyledInput } from './styles';
+import { Container, Small, StyledInput } from './styles';
 
-export const Input = ({ ...props }: InputHTMLAttributes<HTMLInputElement>) => {
-  return <StyledInput {...props} />;
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  errorMessage?: string;
+}
+
+export const Input = ({ errorMessage, ...props }: InputProps) => {
+  return (
+    <Container>
+      <StyledInput {...props} />
+      {errorMessage && <Small>{errorMessage}</Small>}
+    </Container>
+  );
 };
