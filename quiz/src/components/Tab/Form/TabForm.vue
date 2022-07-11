@@ -1,7 +1,5 @@
 <script setup lang="ts">
-    import Input from '@/components/Input/Input.vue';
-    import TextArea from '@/components/TextArea/TextArea.vue';
-    import type { TabItemType } from '@/store/TabStore';
+    import  { type TabItemType, tabStore } from '@/store/TabStore.store';
     import { reactive, ref } from 'vue';
 
     const tabListFormDefaultValue: TabItemType[] = [
@@ -37,15 +35,65 @@
         if (newTabsNumber === 0) {
             tabsNumberErrorMessage.value = 'Deve haver pelo menos uma aba';
         } else if (newTabsNumber) {
-            const newTabList = [...getNewTabItems(newTabsNumber)];
-
-            tabListForm = newTabList;
+            tabListForm = [...getNewTabItems(newTabsNumber)];
             tabsNumberErrorMessage.value = undefined;
+            tabStore.clearErrors();
         } else {
             tabsNumberErrorMessage.value = undefined;
         }
 
         tabsNumber.value = newTabsNumber;
+    };
+
+      const handleTabListFormOnChange = (
+        index: number, 
+        key: keyof TabItemType,
+        value: string
+    ) => {
+        tabListForm[index][key] = value;
+    };
+
+    const isSaveButtonDisabled = () => {
+        if (tabListForm.length > 0 &&
+            tabListForm[0].title === '' &&
+            tabListForm[0].content === ''
+        ) {
+            return true;
+        }
+
+        return false;
+    };
+
+    const clearState = () => {
+        tabsNumber.value = 1;
+        tabListForm = [
+            {
+                title: '',
+                content: '',
+            }
+        ];
+    };
+
+    const handleOnSubmit = () => {
+        const response = tabStore.saveTabList(tabListForm);
+
+        if (response === 'success') {
+            clearState();
+        }
+    };
+
+    const inputError = (index: number, key: keyof TabItemType) => {
+        if (tabStore.errors[index] && tabStore.errors[index][key] !== '') {
+            return {
+                hasError: true,
+                errorMessage: tabStore.errors[index][key],
+            };
+        }
+
+        return {
+            hasError: false,
+            errorMessage: undefined,
+        };
     };
 </script>
 <template>
@@ -53,34 +101,51 @@
         <h3>
             Tabs
         </h3>
-        <form>
+        <form @submit.prevent="handleOnSubmit">
             <div class="form-group">
                 <label>Núm. tabs</label>
-                <Input 
+                <input 
                     type="number"
-                    name="tabsNumber" 
-                    value="2"
-                ></Input>
+                    name="tabsNumber"
+                    min="0"
+                    :value="tabsNumber"
+                    @change="handleTabsNumberOnChange(($event.target as HTMLInputElement).value)"
+                />
+                <small v-if="tabsNumberErrorMessage">
+                    {{tabsNumberErrorMessage}}
+                </small>
             </div>
             <hr />
-            <div class="form-group">
+            <fragment v-for="tabItem, index in tabListForm">
+                <div class="form-group">
                 <label>Título</label>
-                <Input 
-                    type="text" 
-                    name="title" 
-                    value="a"
-                ></Input>
-            </div>
-            <div class="form-group">
-                <label>Conteúdo</label>
-                <TextArea 
-                    name="content" 
-                    value="a"
-                ></TextArea>
-            </div>
+                    <input 
+                        type="text" 
+                        :name="`title-${index}`"
+                        :index="index"
+                        :value="tabItem.title"
+                        @change="handleTabListFormOnChange(index, 'title', ($event.target as HTMLInputElement).value)"
+                    />
+                    <small v-if="inputError(index, 'title').hasError">
+                        {{inputError(index, 'title').errorMessage}}
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label>Conteúdo</label>
+                    <textarea 
+                        :name="`content-${index}`"
+                        :index="index"
+                        :value="tabItem.content"
+                        @change="handleTabListFormOnChange(index, 'content', ($event.target as HTMLInputElement).value)"
+                    ></textarea>
+                    <small v-if="inputError(index, 'content').hasError">
+                        {{inputError(index, 'content').errorMessage}}
+                    </small>
+                </div>
+            </fragment>
             <button 
                 type="submit"
-                disabled="false"
+                :disabled="isSaveButtonDisabled()"
             >
                 Salvar
             </button>
