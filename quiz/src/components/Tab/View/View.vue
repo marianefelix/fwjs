@@ -1,8 +1,8 @@
 <script setup lang="ts">
     // imports
     import { ref } from "@vue/reactivity";
-    import CustomButton from "../CustomButton/CustomButton.vue";
-    import Enunciation from "../Enunciation/Enunciation.vue";
+    import CustomButton from "../../CustomButton/CustomButton.vue";
+    import Enunciation from "../../Enunciation/Enunciation.vue";
 
     interface TabProps {
         data: {
