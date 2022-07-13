@@ -10,7 +10,7 @@ export interface TabListType {
 }
 
 interface TabStoreType {
-    tabList: TabListType;
+    tabList: TabItemType[];
     errors: TabItemType[];
     saveTabList: (newTabList: TabListType) => 'success' | 'error';
     clearErrors: () => void;
@@ -43,14 +43,20 @@ const isTabListValid = (newTabList: TabListType) => {
 }
 
 export const tabStore = reactive<TabStoreType>({
-    tabList: reactive<TabListType>({}),
+    tabList: reactive<TabItemType[]>([]),
     errors: reactive<TabItemType[]>([]),
 
     saveTabList: (newTabList: TabListType) => {
         const validation = isTabListValid(newTabList);
 
         if (validation.isValid) {
-            tabStore.tabList = {...tabStore.tabList, ...newTabList};
+            const newTabArrayList: TabItemType[] = [];
+
+            Object.keys(newTabList).forEach((_, index) => {
+              newTabArrayList.push(newTabList[index]);
+            });
+
+            tabStore.tabList = [...tabStore.tabList, ...newTabArrayList];
             tabStore.errors = [];
 
             return 'success';

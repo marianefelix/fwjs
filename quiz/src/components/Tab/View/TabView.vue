@@ -42,11 +42,9 @@
             Sem conteúdo
         </p>
         <div v-else>
-            <div
-                class="tab-panel"
-                v-for="tabItem, index in tabStore.tabList"
-            >
+            <div class="tab-panel">
                 <button
+                    v-for="tabItem, index in tabStore.tabList"
                     :key="`tabItem-${index}`"
                     :class="isTabSelected(index) ? 'selected' : ''"
                     @click="tabOnClick(index)"

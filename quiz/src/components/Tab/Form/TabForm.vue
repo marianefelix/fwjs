@@ -11,14 +11,14 @@
 
     const tabsNumber = ref<number | undefined>(1);
     const tabsNumberErrorMessage = ref<string | undefined>();
-    const tabListForm = reactive<TabListType>(
+    let tabListForm = reactive<TabListType>(
         tabListFormDefaultValue
     );
 
     const setNewTabItems = (newTabsNumber: number) => {
         const condition = newTabsNumber;
 
-        if (newTabsNumber === 1) {
+        if (newTabsNumber < Object.keys(tabListForm).length) {
             Object.keys(tabListForm).forEach((_, index) => {
                 delete tabListForm[index];
             });
@@ -69,12 +69,12 @@
 
     const clearState = () => {
         tabsNumber.value = 1;
-        tabListForm[0] = 
-            {
+        tabListForm = {
+            0: {
                 title: '',
                 content: '',
             }
-        ;
+        };
     };
 
     const handleOnSubmit = () => {
