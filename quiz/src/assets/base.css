@@ -1,9 +1,14 @@
 #app {
-  height: 100vh;
-
   display: flex;
   justify-content: center;
-  align-items: center;
+  gap: 3rem;
+
+  padding: 40px;
+
 
   font-family: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
 }

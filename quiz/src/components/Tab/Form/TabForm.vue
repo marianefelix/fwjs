@@ -1,6 +1,6 @@
 <script setup lang="ts">
     import  { type TabItemType, type TabListType, tabStore } from '@/store/TabStore.store';
-    import { reactive, ref } from 'vue';
+    import { reactive, ref } from '@vue/reactivity';
 
     const tabListFormDefaultValue: TabListType = {
         0: {
