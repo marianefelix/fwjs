@@ -30,6 +30,10 @@ form {
     gap: 0.5rem;
 }
 
+fragment .form-group:nth-child(1), fragment .form-group:nth-child(2) {
+    margin-bottom: 8px;
+}
+
 label {
     width: fit-content;
     font-style: normal;
@@ -67,28 +71,29 @@ textarea {
 }
 
 small {
-display: block;
-font-family: 'Inter';
-font-style: italic;
-font-weight: 300;
-font-size: 12px;
-line-height: 16px;
-color: #FF3838;
+    display: block;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 16px;
+    color: #FF3838;
 }
-
-
 
 button {
     width: 69px;
     height: 36px;
+
     display: flex;
     align-self: end;
     gap: 4px;
+    
     padding: 8px 16px;
     border-radius: 4px;
+    
     font-weight: 500;
     font-size: 14px;
     line-height: 20px;
+    
     background: #7B61FF;
     border: none;
     color: white;

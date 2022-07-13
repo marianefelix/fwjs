@@ -1,52 +1,56 @@
 import { reactive } from "vue";
 
 export interface TabItemType {
-    title: string;
-    content: string;
+  title: string;
+  content: string;
+}
+
+export interface TabListType {
+  [key: number]: TabItemType
 }
 
 interface TabStoreType {
-    tabList: TabItemType[];
+    tabList: TabListType;
     errors: TabItemType[];
-    saveTabList: (newTabList: TabItemType[]) => 'success' | 'error';
+    saveTabList: (newTabList: TabListType) => 'success' | 'error';
     clearErrors: () => void;
 }
 
-const isTabListValid = (newTabList: TabItemType[]) => {
-    let isValid = true;
-    const newErrors: TabItemType[] = [];
+const isTabListValid = (newTabList: TabListType) => {
+  let isValid = true;
+  const newErrors: TabItemType[] = [];
 
-    newTabList.forEach((newTabItem) => {
-      const newErrorItem = {} as TabItemType;
-      if (newTabItem.title === '') {
-        newErrorItem.title = 'É necessário informar o título da aba';
-        isValid = false;
-      } else {
-        newErrorItem.title = '';
-      }
+  Object.keys(newTabList).forEach((_, index) => {
+    const newErrorItem = {} as TabItemType;
+    if (newTabList[index].title === '') {
+      newErrorItem.title = 'É necessário informar o título da aba';
+      isValid = false;
+    } else {
+      newErrorItem.title = '';
+    }
 
-      if (newTabItem.content === '') {
-        newErrorItem.content = 'É necessário informar o conteúdo da aba';
-        isValid = false;
-      } else {
-        newErrorItem.content = '';
-      }
+    if (newTabList[index].content === '') {
+      newErrorItem.content = 'É necessário informar o conteúdo da aba';
+      isValid = false;
+    } else {
+      newErrorItem.content = '';
+    }
 
-      newErrors.push(newErrorItem);
-    });
-  
-    return { isValid, newErrors };
+    newErrors.push(newErrorItem);
+  });
+
+  return { isValid, newErrors };
 }
 
 export const tabStore = reactive<TabStoreType>({
-    tabList: reactive<TabItemType[]>([]),
+    tabList: reactive<TabListType>({}),
     errors: reactive<TabItemType[]>([]),
 
-    saveTabList: (newTabList: TabItemType[]) => {
+    saveTabList: (newTabList: TabListType) => {
         const validation = isTabListValid(newTabList);
 
         if (validation.isValid) {
-            tabStore.tabList = [...tabStore.tabList, ...newTabList];
+            tabStore.tabList = {...tabStore.tabList, ...newTabList};
             tabStore.errors = [];
 
             return 'success';

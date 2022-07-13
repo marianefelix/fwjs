@@ -1,32 +1,35 @@
 <script setup lang="ts">
-    import  { type TabItemType, tabStore } from '@/store/TabStore.store';
+    import  { type TabItemType, type TabListType, tabStore } from '@/store/TabStore.store';
     import { reactive, ref } from 'vue';
 
-    const tabListFormDefaultValue: TabItemType[] = [
-        {
+    const tabListFormDefaultValue: TabListType = {
+        0: {
             title: '',
             content: ''
-        },
-    ];
+        }
+    };
 
     const tabsNumber = ref<number | undefined>(1);
     const tabsNumberErrorMessage = ref<string | undefined>();
-    let tabListForm = reactive<TabItemType[]>(
+    const tabListForm = reactive<TabListType>(
         tabListFormDefaultValue
     );
 
-    const getNewTabItems = (newTabsNumber: number): TabItemType[] => {
-        const newTabList = [];
+    const setNewTabItems = (newTabsNumber: number) => {
         const condition = newTabsNumber;
 
-        for (let i = 0; i < condition; i++) {
-            newTabList.push({
-                title: '',
-                content: ''
+        if (newTabsNumber === 1) {
+            Object.keys(tabListForm).forEach((_, index) => {
+                delete tabListForm[index];
             });
         }
 
-        return newTabList;
+        for (let i = 0; i < condition; i++) {
+            tabListForm[i] = {
+                title: '',
+                content: ''
+            };
+        }
     };
 
     const handleTabsNumberOnChange = (value: string) => {
@@ -35,7 +38,7 @@
         if (newTabsNumber === 0) {
             tabsNumberErrorMessage.value = 'Deve haver pelo menos uma aba';
         } else if (newTabsNumber) {
-            tabListForm = [...getNewTabItems(newTabsNumber)];
+            setNewTabItems(newTabsNumber);
             tabsNumberErrorMessage.value = undefined;
             tabStore.clearErrors();
         } else {
@@ -54,7 +57,7 @@
     };
 
     const isSaveButtonDisabled = () => {
-        if (tabListForm.length > 0 &&
+        if (Object.keys(tabListForm).length > 0 &&
             tabListForm[0].title === '' &&
             tabListForm[0].content === ''
         ) {
@@ -66,12 +69,12 @@
 
     const clearState = () => {
         tabsNumber.value = 1;
-        tabListForm = [
+        tabListForm[0] = 
             {
                 title: '',
                 content: '',
             }
-        ];
+        ;
     };
 
     const handleOnSubmit = () => {
@@ -118,29 +121,33 @@
             <hr />
             <fragment v-for="tabItem, index in tabListForm">
                 <div class="form-group">
-                <label>Título</label>
-                    <input 
-                        type="text" 
-                        :name="`title-${index}`"
-                        :index="index"
-                        :value="tabItem.title"
-                        @change="handleTabListFormOnChange(index, 'title', ($event.target as HTMLInputElement).value)"
-                    />
-                    <small v-if="inputError(index, 'title').hasError">
-                        {{inputError(index, 'title').errorMessage}}
-                    </small>
+                    <label>Título</label>
+                    <div class="input-area">
+                        <input 
+                            type="text" 
+                            :name="`title-${index}`"
+                            :index="index"
+                            :value="tabItem.title"
+                            @change="handleTabListFormOnChange(index, 'title', ($event.target as HTMLInputElement).value)"
+                        />
+                        <small v-if="inputError(index, 'title').hasError">
+                            {{inputError(index, 'title').errorMessage}}
+                        </small>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>Conteúdo</label>
-                    <textarea 
-                        :name="`content-${index}`"
-                        :index="index"
-                        :value="tabItem.content"
-                        @change="handleTabListFormOnChange(index, 'content', ($event.target as HTMLInputElement).value)"
-                    ></textarea>
-                    <small v-if="inputError(index, 'content').hasError">
-                        {{inputError(index, 'content').errorMessage}}
-                    </small>
+                    <div class="input-area">
+                        <textarea 
+                            :name="`content-${index}`"
+                            :index="index"
+                            :value="tabItem.content"
+                            @change="handleTabListFormOnChange(index, 'content', ($event.target as HTMLInputElement).value)"
+                        ></textarea>
+                        <small v-if="inputError(index, 'content').hasError">
+                            {{inputError(index, 'content').errorMessage}}
+                        </small>
+                    </div>
                 </div>
             </fragment>
             <button 
